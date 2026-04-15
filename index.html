@@ -21,6 +21,14 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:20px 4
 .stats{display:flex;justify-content:center;gap:60px;padding:40px;border-top:1px solid #1a1a2e;border-bottom:1px solid #1a1a2e}
 .stat h2{font-size:36px;font-weight:900;color:#FF3D6E}
 .stat p{color:#aaa;font-size:14px}
+.early{padding:80px 40px;text-align:center;background:#0a0a12}
+.early h2{font-size:36px;font-weight:800;margin-bottom:16px}
+.early p{color:#aaa;font-size:16px;margin-bottom:40px}
+.form-wrap{display:flex;flex-direction:column;gap:16px;max-width:440px;margin:0 auto}
+.form-wrap input{background:#1a1a2e;border:1px solid #2a2a4e;color:#fff;padding:16px 20px;border-radius:12px;font-size:16px;outline:none}
+.form-wrap input::placeholder{color:#666}
+.form-wrap button{background:#FF3D6E;color:#fff;border:none;padding:16px;border-radius:32px;font-size:16px;font-weight:700;cursor:pointer}
+.success{display:none;color:#FF3D6E;font-size:18px;font-weight:700;margin-top:20px}
 .features{padding:80px 40px;text-align:center}
 .features h2{font-size:36px;font-weight:800;margin-bottom:50px}
 .cards{display:flex;gap:24px;justify-content:center;flex-wrap:wrap}
@@ -58,6 +66,16 @@ footer{text-align:center;padding:40px;color:#555;font-size:13px}
   <div class="stat"><h2>500K+</h2><p>Canciones</p></div>
   <div class="stat"><h2>$59</h2><p>MXN/mes</p></div>
 </section>
+<section class="early">
+  <h2>Sé el primero en entrar</h2>
+  <p>Regístrate ahora y obtén acceso anticipado a Soundttrack antes que nadie.</p>
+  <div class="form-wrap">
+    <input type="text" id="nombre" placeholder="Tu nombre" required/>
+    <input type="email" id="email" placeholder="Tu email" required/>
+    <button onclick="enviar()">🎵 Quiero acceso anticipado</button>
+    <div class="success" id="success">¡Listo! Te avisamos cuando abramos. 🎉</div>
+  </div>
+</section>
 <section class="features">
   <h2>¿Por qué Soundttrack?</h2>
   <div class="cards">
@@ -76,5 +94,20 @@ footer{text-align:center;padding:40px;color:#555;font-size:13px}
   </div>
 </section>
 <footer>©️ 2025 Soundttrack. Todos los derechos reservados.</footer>
+<script>
+async function enviar() {
+  const nombre = document.getElementById('nombre').value;
+  const email = document.getElementById('email').value;
+  if (!nombre || !email) { alert('Por favor llena todos los campos'); return; }
+  const res = await fetch('https://formspree.io/f/xeoqkpwb', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({nombre, email})
+  });
+  if (res.ok) {
+    document.getElementById('success').style.display = 'block';
+  }
+}
+</script>
 </body>
 </html>
