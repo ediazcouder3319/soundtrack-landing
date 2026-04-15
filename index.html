@@ -99,7 +99,7 @@ async function enviar() {
   const nombre = document.getElementById('nombre').value;
   const email = document.getElementById('email').value;
   if (!nombre || !email) { alert('Por favor llena todos los campos'); return; }
-  const res = await fetch('https://formspree.io/f/xeoqkpwb', {
+  const res = await fetch('https://formspree.io/f/xjgjgpnk', {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({nombre, email})
